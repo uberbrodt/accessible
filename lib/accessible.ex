@@ -45,6 +45,10 @@ defmodule Accessible do
       end
 
       @impl Access
+      def pop(struct, key) do
+        pop(struct, key, nil)
+      end
+
       def pop(struct, key, default \\ nil) do
         val = get(struct, key, default)
         updated = delete(struct, key)
