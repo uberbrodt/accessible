@@ -40,7 +40,9 @@ defmodule Accessible do
             {current, delete(struct, key)}
 
           other ->
-            raise "the given function must return a two-element tuple or :pop, got: #{inspect(other)}"
+            raise "the given function must return a two-element tuple or :pop, got: #{
+                    inspect(other)
+                  }"
         end
       end
 
@@ -49,14 +51,13 @@ defmodule Accessible do
         pop(struct, key, nil)
       end
 
-      def pop(struct, key, default \\ nil) do
+      def pop(struct, key, default) do
         val = get(struct, key, default)
         updated = delete(struct, key)
         {val, updated}
       end
 
-      defoverridable [fetch: 2, get: 3, put: 3, delete: 2,
-                      get_and_update: 3, pop: 3]
+      defoverridable fetch: 2, get: 3, put: 3, delete: 2, get_and_update: 3, pop: 3
     end
   end
 end
